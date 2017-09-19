@@ -1,0 +1,20 @@
+
+
+version: '3'
+services:
+  postgres:
+    image: postgres:9.6.5
+    hostname: postgres
+    ports:
+      - "5432:5432"
+  mongooseim:
+    hostname: mongooseim-1
+    image: mongooseim/mongooseim
+    ports:
+      - '5222:5222'
+    depends_on:
+      - postgres
+    links:
+      - postgres:postgres
+    volumes:
+      - /Users/ovidiudanielbarba/Desktop/mongoose:/usr/lib/mongooseim
