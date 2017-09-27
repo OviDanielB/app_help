@@ -3,8 +3,9 @@
 version: '3'
 services:
   postgres:
-    image: postgres:9.6.5
+    image: ovi
     hostname: postgres
+    command: bash -c "curl -O https://raw.githubusercontent.com/OviDanielB/app_help/master/pg.sql && sleep 60 && psql -U postgres -c \"CREATE DATABASE mongooseim;\" && psql -U postgres -q -d mongooseim -f pg.sql "
     ports:
       - "5432:5432"
   mongooseim:
